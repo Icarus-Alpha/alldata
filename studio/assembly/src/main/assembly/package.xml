@@ -125,18 +125,18 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/services/data-cluster-service-parent/data-cluster-service/target
+            <directory>${project.parent.basedir}/services/codegen-service-parent/codegen-service/target
             </directory>
-            <outputDirectory>./16gslave/data-cluster-service</outputDirectory>
+            <outputDirectory>./16gslave/codegen-service</outputDirectory>
             <includes>
                 <include>*.jar</include>
             </includes>
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/services/data-cluster-service-parent/data-cluster-service/target/classes
+            <directory>${project.parent.basedir}/services/codegen-service-parent/codegen-service/target/classes
             </directory>
-            <outputDirectory>./16gslave/data-cluster-service</outputDirectory>
+            <outputDirectory>./16gslave/codegen-service</outputDirectory>
             <includes>
                 <include>bootstrap.yml</include>
             </includes>
@@ -416,7 +416,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/ui</directory>
+            <directory>${project.parent.basedir}/ui_studio/dist</directory>
             <outputDirectory>./16gmaster/ui</outputDirectory>
         </fileSet>
 

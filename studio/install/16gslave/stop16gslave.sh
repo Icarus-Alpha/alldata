@@ -49,3 +49,10 @@ kill -9 $pid
 
 echo "已杀死任务: $pid"
 
+pid=$(ps -ef | grep codegen-service.jar | grep -Ev 'color=auto' | awk '{print $2}')
+
+echo "即将杀死任务codegen-service: $pid"
+
+kill -9 $pid
+
+echo "已杀死任务: $pid"

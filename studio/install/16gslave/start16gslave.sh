@@ -22,3 +22,6 @@ sh data-quality-service.sh
 
 echo "即将启动任务workflow-service"
 sh workflow-service.sh
+
+echo "即将启动任务codegen-service"
+sh codegen-service.sh
