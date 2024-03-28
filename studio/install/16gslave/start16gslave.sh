@@ -11,14 +11,14 @@ source /etc/profile
 echo "即将启动任务data-market-service-mapping"
 sh data-market-service-mapping.sh
 
-echo "即将启动任务master data service"
+echo "即将启动任务data-masterdata-service"
 sh data-masterdata-service.sh
 
-echo "即将启动任务metadata-console"
+echo "即将启动任务data-metadata-service-console"
 sh data-metadata-service-console.sh
 
-echo "即将启动任务quality"
+echo "即将启动任务data-quality-service"
 sh data-quality-service.sh
 
-echo "即将启动任务workflow"
+echo "即将启动任务workflow-service"
 sh workflow-service.sh

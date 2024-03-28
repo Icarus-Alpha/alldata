@@ -6,19 +6,19 @@ source /etc/profile
 #sh gateway.sh
 #sleep 15s
 
-echo "即将启动任务standard"
+echo "即将启动任务data-standard-service"
 sh data-standard-service.sh
 
-echo "即将启动任务visual"
+echo "即将启动任务data-visual-service"
 sh data-visual-service.sh
 
-echo "即将启动任务email"
+echo "即将启动任务email-service"
 sh email-service.sh
 
-echo "即将启动任务file"
+echo "即将启动任务file-service"
 sh file-service.sh
 
-echo "即将启动任务quartz"
+echo "即将启动任务quartz-service"
 sh quartz-service.sh
 
 

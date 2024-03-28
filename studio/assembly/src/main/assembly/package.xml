@@ -89,7 +89,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service-integration/target
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service-integration/target
             </directory>
             <outputDirectory>./16gmaster/data-market-service-integration</outputDirectory>
             <includes>
@@ -98,7 +98,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service-integration/target/classes
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service-integration/target/classes
             </directory>
             <outputDirectory>./16gmaster/data-market-service-integration</outputDirectory>
             <includes>
@@ -107,7 +107,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-compare-service-parent/data-compare-service/target
+            <directory>${project.parent.basedir}/services/data-compare-service-parent/data-compare-service/target
             </directory>
             <outputDirectory>./16gmaster/data-compare-service</outputDirectory>
             <includes>
@@ -116,7 +116,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-compare-service-parent/data-compare-service/target/classes
+            <directory>${project.parent.basedir}/services/data-compare-service-parent/data-compare-service/target/classes
             </directory>
             <outputDirectory>./16gmaster/data-compare-service</outputDirectory>
             <includes>
@@ -125,7 +125,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-cluster-service-parent/data-cluster-service/target
+            <directory>${project.parent.basedir}/services/data-cluster-service-parent/data-cluster-service/target
             </directory>
             <outputDirectory>./16gslave/data-cluster-service</outputDirectory>
             <includes>
@@ -134,7 +134,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-cluster-service-parent/data-cluster-service/target/classes
+            <directory>${project.parent.basedir}/services/data-cluster-service-parent/data-cluster-service/target/classes
             </directory>
             <outputDirectory>./16gslave/data-cluster-service</outputDirectory>
             <includes>
@@ -143,7 +143,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-system-service-parent/data-system-service/target
+            <directory>${project.parent.basedir}/services/data-system-service-parent/data-system-service/target
             </directory>
             <outputDirectory>./16gmaster/data-system-service</outputDirectory>
             <includes>
@@ -152,7 +152,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-system-service-parent/data-system-service/target/classes
+            <directory>${project.parent.basedir}/services/data-system-service-parent/data-system-service/target/classes
             </directory>
             <outputDirectory>./16gmaster/data-system-service</outputDirectory>
             <includes>
@@ -162,7 +162,7 @@
 
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/service-data-dts-parent/service-data-dts/target
+            <directory>${project.parent.basedir}/services/service-data-dts-parent/service-data-dts/target
             </directory>
             <outputDirectory>./16gmaster/service-data-dts</outputDirectory>
             <includes>
@@ -171,7 +171,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/service-data-dts-parent/service-data-dts/target/classes
+            <directory>${project.parent.basedir}/services/service-data-dts-parent/service-data-dts/target/classes
             </directory>
             <outputDirectory>./16gmaster/service-data-dts</outputDirectory>
             <includes>
@@ -180,7 +180,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/system-service-parent/system-service/target
+            <directory>${project.parent.basedir}/services/system-service-parent/system-service/target
             </directory>
             <outputDirectory>./16gmaster/system-service</outputDirectory>
             <includes>
@@ -189,7 +189,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/system-service-parent/system-service/target/classes
+            <directory>${project.parent.basedir}/services/system-service-parent/system-service/target/classes
             </directory>
             <outputDirectory>./16gmaster/system-service</outputDirectory>
             <includes>
@@ -199,7 +199,7 @@
 
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service/target
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service/target
             </directory>
             <outputDirectory>./16gmaster/data-market-service</outputDirectory>
             <includes>
@@ -208,7 +208,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service/target/classes
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service/target/classes
             </directory>
             <outputDirectory>./16gmaster/data-market-service</outputDirectory>
             <includes>
@@ -217,7 +217,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service-mapping/target
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service-mapping/target
             </directory>
             <outputDirectory>./16gslave/data-market-service-mapping</outputDirectory>
             <includes>
@@ -225,7 +225,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-market-service-parent/data-market-service-mapping/target/classes
+            <directory>${project.parent.basedir}/services/data-market-service-parent/data-market-service-mapping/target/classes
             </directory>
             <outputDirectory>./16gslave/data-market-service-mapping</outputDirectory>
             <includes>
@@ -234,7 +234,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-masterdata-service-parent/data-masterdata-service/target
+            <directory>${project.parent.basedir}/services/data-masterdata-service-parent/data-masterdata-service/target
             </directory>
             <outputDirectory>./16gslave/data-masterdata-service</outputDirectory>
             <includes>
@@ -243,7 +243,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-masterdata-service-parent/data-masterdata-service/target/classes
+            <directory>${project.parent.basedir}/services/data-masterdata-service-parent/data-masterdata-service/target/classes
             </directory>
             <outputDirectory>./16gslave/data-masterdata-service</outputDirectory>
             <includes>
@@ -252,7 +252,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-metadata-service-parent/data-metadata-service-console/target
+            <directory>${project.parent.basedir}/services/data-metadata-service-parent/data-metadata-service-console/target
             </directory>
             <outputDirectory>./16gslave/data-metadata-service-console</outputDirectory>
             <includes>
@@ -261,7 +261,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-metadata-service-parent/data-metadata-service-console/target/classes
+            <directory>${project.parent.basedir}/services/data-metadata-service-parent/data-metadata-service-console/target/classes
             </directory>
             <outputDirectory>./16gslave/data-metadata-service-console</outputDirectory>
             <includes>
@@ -271,7 +271,7 @@
 
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-metadata-service-parent/data-metadata-service/target
+            <directory>${project.parent.basedir}/services/data-metadata-service-parent/data-metadata-service/target
             </directory>
             <outputDirectory>./16gmaster/data-metadata-service</outputDirectory>
             <includes>
@@ -280,7 +280,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-metadata-service-parent/data-metadata-service/target/classes
+            <directory>${project.parent.basedir}/services/data-metadata-service-parent/data-metadata-service/target/classes
             </directory>
             <outputDirectory>./16gmaster/data-metadata-service</outputDirectory>
             <includes>
@@ -289,7 +289,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-quality-service-parent/data-quality-service/target
+            <directory>${project.parent.basedir}/services/data-quality-service-parent/data-quality-service/target
             </directory>
             <outputDirectory>./16gslave/data-quality-service</outputDirectory>
             <includes>
@@ -298,7 +298,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-quality-service-parent/data-quality-service/target/classes
+            <directory>${project.parent.basedir}/services/data-quality-service-parent/data-quality-service/target/classes
             </directory>
             <outputDirectory>./16gslave/data-quality-service</outputDirectory>
             <includes>
@@ -307,7 +307,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-standard-service-parent/data-standard-service/target
+            <directory>${project.parent.basedir}/services/data-standard-service-parent/data-standard-service/target
             </directory>
             <outputDirectory>./16gdata/data-standard-service</outputDirectory>
             <includes>
@@ -315,7 +315,7 @@
             </includes>
         </fileSet>
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-standard-service-parent/data-standard-service/target/classes
+            <directory>${project.parent.basedir}/services/data-standard-service-parent/data-standard-service/target/classes
             </directory>
             <outputDirectory>./16gdata/data-standard-service</outputDirectory>
             <includes>
@@ -325,7 +325,7 @@
         
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-visual-service-parent/data-visual-service/target
+            <directory>${project.parent.basedir}/services/data-visual-service-parent/data-visual-service/target
             </directory>
             <outputDirectory>./16gdata/data-visual-service</outputDirectory>
             <includes>
@@ -334,7 +334,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/data-visual-service-parent/data-visual-service/target/classes
+            <directory>${project.parent.basedir}/services/data-visual-service-parent/data-visual-service/target/classes
             </directory>
             <outputDirectory>./16gdata/data-visual-service</outputDirectory>
             <includes>
@@ -343,7 +343,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/quartz-service-parent/quartz-service/target
+            <directory>${project.parent.basedir}/services/quartz-service-parent/quartz-service/target
             </directory>
             <outputDirectory>./16gdata/quartz-service</outputDirectory>
             <includes>
@@ -352,7 +352,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/quartz-service-parent/quartz-service/target/classes
+            <directory>${project.parent.basedir}/services/quartz-service-parent/quartz-service/target/classes
             </directory>
             <outputDirectory>./16gdata/quartz-service</outputDirectory>
             <includes>
@@ -361,7 +361,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/workflow-service-parent/workflow-service/target
+            <directory>${project.parent.basedir}/services/workflow-service-parent/workflow-service/target
             </directory>
             <outputDirectory>./16gslave/workflow-service</outputDirectory>
             <includes>
@@ -370,7 +370,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/workflow-service-parent/workflow-service/target/classes
+            <directory>${project.parent.basedir}/services/workflow-service-parent/workflow-service/target/classes
             </directory>
             <outputDirectory>./16gslave/workflow-service</outputDirectory>
             <includes>
@@ -379,7 +379,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/email-service-parent/email-service/target
+            <directory>${project.parent.basedir}/services/email-service-parent/email-service/target
             </directory>
             <outputDirectory>./16gdata/email-service</outputDirectory>
             <includes>
@@ -388,7 +388,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/email-service-parent/email-service/target/classes
+            <directory>${project.parent.basedir}/services/email-service-parent/email-service/target/classes
             </directory>
             <outputDirectory>./16gdata/email-service</outputDirectory>
             <includes>
@@ -398,7 +398,7 @@
 
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/file-service-parent/file-service/target
+            <directory>${project.parent.basedir}/services/file-service-parent/file-service/target
             </directory>
             <outputDirectory>./16gdata/file-service</outputDirectory>
             <includes>
@@ -407,7 +407,7 @@
         </fileSet>
 
         <fileSet>
-            <directory>${project.parent.basedir}/modules/file-service-parent/file-service/target/classes
+            <directory>${project.parent.basedir}/services/file-service-parent/file-service/target/classes
             </directory>
             <outputDirectory>./16gdata/file-service</outputDirectory>
             <includes>

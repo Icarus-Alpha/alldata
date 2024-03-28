@@ -13,15 +13,15 @@ sh data-system-service/data-system-service.sh
 echo "即将启动任务service-data-dts"
 sh service-data-dts/service-data-dts.sh
 
-echo "即将启动任务system"
+echo "即将启动任务system-service"
 sh system-service/system-service.sh
 
-echo "即将启动任务market"
+echo "即将启动任务data-market-service"
 sh data-market-service/data-market-service.sh
 
-echo "即将启动任务metadata"
+echo "即将启动任务data-metadata-service"
 sh data-metadata-service/data-metadata-service.sh
 
-echo "即将启动任务market-service-integration"
+echo "即将启动任务data-market-service-integration"
 sh data-market-service-integration/data-market-service-integration.sh
 

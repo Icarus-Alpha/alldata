@@ -1,0 +1,6 @@
+1. 关闭大小写敏感
+2. 禁用 NO_ZERO_DATE 模式：
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'NO_ZERO_IN_DATE',''));
+SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'NO_ZERO_DATE',''));
+3. 配置 mysql 隔离级别，进入 mysql 终端
+SET GLOBAL transaction_isolation='READ-COMMITTED';

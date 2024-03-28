@@ -4,14 +4,14 @@ server:
     # 应用的访问路径
     context-path: /
   tomcat:
-    # tomcat的URI编码
+    # tomcat 的 URI 编码
     uri-encoding: UTF-8
-    # 连接数满后的排队数，默认为100
+    # 连接数满后的排队数，默认为 100
     accept-count: 1000
     threads:
-      # tomcat最大线程数，默认为200
+      # tomcat 最大线程数，默认为 200
       max: 800
-      # Tomcat启动初始化的线程数，默认值10
+      # Tomcat 启动初始化的线程数，默认值 10
       min-spare: 100
 
 spring:
@@ -33,7 +33,7 @@ eureka:
   instance:
     lease-renewal-interval-in-seconds: 20
     prefer-ip-address: true
-    ip-address: localhost
+    ip-address: 16gmaster
   client:
     register-with-eureka: true
     fetch-registry: true

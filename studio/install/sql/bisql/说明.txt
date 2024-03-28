@@ -1,0 +1,15 @@
+数据库版本为 mysql5.7 及以上版本
+
+依次创建以下数据库：
+data_cloud
+data_cloud_flowable
+data_cloud_quartz
+foodmart2
+robot
+字符集：utf8mb4
+排序规则：utf8mb4_general_ci
+
+数据库创建完毕，导入sql即可
+
+
+
