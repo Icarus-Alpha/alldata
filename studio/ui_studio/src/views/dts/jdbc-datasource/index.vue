@@ -46,7 +46,7 @@
       <el-table-column label="jdbc连接串" width="300" align="center" :show-overflow-tooltip="true">
         <template slot-scope="scope">{{ scope.row.jdbcUrl ? scope.row.jdbcUrl:'-' }}</template>
       </el-table-column>
-      <!-- <el-table-column label="jdbc驱动类" width="200" align="center" :show-overflow-tooltip="true">
+      <!-- <el-table-column label="jdbc 驱动类" width="200" align="center" :show-overflow-tooltip="true">
         <template slot-scope="scope">{{ scope.row.jdbcDriverClass ? scope.row.jdbcDriverClass:'-' }}</template>
       </el-table-column>-->
       <el-table-column label="ZK地址" width="200" align="center" :show-overflow-tooltip="true">
@@ -328,18 +328,18 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           datasourceApi.test(this.temp).then(response => {
-            if (response.data === false) {
-              this.$notify({
-                title: 'Fail',
-                message: response.data.msg,
-                type: 'fail',
-                duration: 2000
-              })
-            } else {
+            if (response.data === true) {
               this.$notify({
                 title: 'Success',
                 message: 'Tested Successfully',
                 type: 'success',
+                duration: 2000
+              })
+            } else {
+              this.$notify({
+                title: 'Fail',
+                message: response.msg,
+                type: 'fail',
                 duration: 2000
               })
             }

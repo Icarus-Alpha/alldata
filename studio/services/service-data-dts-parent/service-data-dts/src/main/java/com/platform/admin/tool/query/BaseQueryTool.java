@@ -15,6 +15,9 @@ import com.platform.admin.util.JdbcConstants;
 import com.platform.admin.util.JdbcUtils;
 import com.platform.core.util.Constants;
 import com.zaxxer.hikari.HikariDataSource;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import javax.xml.bind.DatatypeConverter;
 import net.sourceforge.jtds.jdbcx.JtdsDataSource;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -56,28 +59,39 @@ public abstract class BaseQueryTool implements QueryToolInterface {
      * @param jobDatasource
      */
     BaseQueryTool(JobDatasource jobDatasource) throws SQLException {
-        System.out.println("#####################"+jobDatasource.getDatasourceName());
-        if (LocalCacheUtil.get(jobDatasource.getDatasourceName()) == null) {
+        // 使用连接信息生成缓存键
+        String cacheKey = generateCacheKey(jobDatasource);
+        this.connection = (Connection) LocalCacheUtil.get(cacheKey);
+        if (this.connection == null || !this.connection.isValid(500)) {
             getDataSource(jobDatasource);
-        } else {
-            this.connection = (Connection) LocalCacheUtil.get(jobDatasource.getDatasourceName());
-            String jdbcUrl = jobDatasource.getJdbcUrl();
-            if (jdbcUrl != null && jdbcUrl.startsWith("jdbc:jtds")) {
-                if (connection == null) {
-                    LocalCacheUtil.remove(jobDatasource.getDatasourceName());
-                    getDataSource(jobDatasource);
-                }
+            // 确保新连接有效后，再次检查
+            if (this.connection != null && this.connection.isValid(500)) {
+                LocalCacheUtil.set(cacheKey, this.connection, 4 * 60 * 60 * 1000);
             } else {
-                if (!this.connection.isValid(500)) {
-                    LocalCacheUtil.remove(jobDatasource.getDatasourceName());
-                    getDataSource(jobDatasource);
-                }
+                throw new SQLException("Unable to establish a valid database connection for: " + jobDatasource.getDatasourceName());
             }
         }
         sqlBuilder = DatabaseMetaFactory.getByDbType(jobDatasource.getDatasource());
         currentSchema = getSchema(jobDatasource.getJdbcUsername());
         currentDatabase = jobDatasource.getDatasource();
         LocalCacheUtil.set(jobDatasource.getDatasourceName(), this.connection, 4 * 60 * 60 * 1000);
+    }
+
+    /**
+     * 生成基于连接信息的缓存键。
+     * @param jobDatasource 数据源信息
+     * @return 生成的缓存键
+     */
+    private static String generateCacheKey(JobDatasource jobDatasource) {
+        String keyInfo = jobDatasource.getJdbcUrl() + jobDatasource.getJdbcUsername() + jobDatasource.getJdbcPassword();
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(keyInfo.getBytes());
+            byte[] digest = md.digest();
+            return DatatypeConverter.printHexBinary(digest).toUpperCase();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Failed to generate cache key", e);
+        }
     }
 
     private void getDataSource(JobDatasource jobDatasource) throws SQLException {
@@ -125,7 +139,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         }
     }
 
-    //根据connection获取schema
+    //根据 connection 获取 schema
     private String getSchema(String jdbcUsername) {
         String res = null;
         try {
@@ -140,7 +154,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
             logger.error("[getSchema Exception] --> "
                     + "the exception message is:" + e.getMessage());
         }
-        // 如果res是null，则将用户名当作 schema
+        // 如果 res 是 null，则将用户名当作 schema
         if (StrUtil.isBlank(res) && StringUtils.isNotBlank(jdbcUsername)) {
             res = jdbcUsername.toUpperCase();
         }
@@ -152,7 +166,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         //获取表信息
         List<Map<String, Object>> tableInfos = this.getTableInfo(tableName);
         if (tableInfos.isEmpty()) {
-            throw new NullPointerException("查询出错! ");
+            throw new NullPointerException("查询出错！");
         }
 
         TableInfo tableInfo = new TableInfo();
@@ -171,7 +185,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         List<String> primaryKeys = getPrimaryKeys(tableName);
         logger.info("主键列为：{}", primaryKeys);
 
-        //设置ifPrimaryKey标志
+        //设置 ifPrimaryKey 标志
         fullColumn.forEach(e -> {
             if (primaryKeys.contains(e.getName())) {
                 e.setIfPrimaryKey(true);
@@ -182,7 +196,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         return tableInfo;
     }
 
-    //无论怎么查，返回结果都应该只有表名和表注释，遍历map拿value值即可
+    //无论怎么查，返回结果都应该只有表名和表注释，遍历 map 拿 value 值即可
     @Override
     public List<Map<String, Object>> getTableInfo(String tableName) {
         String sqlQueryTableNameComment = sqlBuilder.getSQLQueryTableNameComment();
@@ -217,7 +231,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         List<ColumnInfo> fullColumn = Lists.newArrayList();
         //获取指定表的所有字段
         try {
-            //获取查询指定表所有字段的sql语句
+            //获取查询指定表所有字段的 sql 语句
             String querySql = sqlBuilder.getSQLQueryFields(tableName);
             logger.info("querySql: {}", querySql);
 
@@ -253,7 +267,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         return res;
     }
 
-    //构建DasColumn对象
+    //构建 DasColumn 对象
     private List<DasColumn> buildDasColumn(String tableName, ResultSetMetaData metaData) {
         List<DasColumn> res = Lists.newArrayList();
         try {
@@ -311,7 +325,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         return res;
     }
 
-    //获取指定表的主键，可能是多个，所以用list
+    //获取指定表的主键，可能是多个，所以用 list
     private List<String> getPrimaryKeys(String tableName) {
         List<String> res = Lists.newArrayList();
         String sqlQueryPrimaryKey = sqlBuilder.getSQLQueryPrimaryKey();
@@ -333,7 +347,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         Statement stmt = null;
         ResultSet rs = null;
         try {
-            //获取查询指定表所有字段的sql语句
+            //获取查询指定表所有字段的 sql 语句
             String querySql = sqlBuilder.getSQLQueryFields(tableName);
             logger.info("querySql: {}", querySql);
 
@@ -373,7 +387,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         ResultSet rs = null;
         try {
             stmt = connection.createStatement();
-            //获取sql
+            //获取 sql
             String sql = getSQLQueryTables(tableSchema);
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -398,7 +412,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         ResultSet rs = null;
         try {
             stmt = connection.createStatement();
-            //获取sql
+            //获取 sql
             String sql = getSQLQueryTables();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
@@ -450,9 +464,9 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         ResultSet rs = null;
         try {
             querySql = querySql.replace(";", "");
-            //拼装sql语句，在后面加上 where 1=0 即可
+            //拼装 sql 语句，在后面加上 where 1=0 即可
             String sql = querySql.concat(" where 1=0");
-            //判断是否已有where，如果是，则加 and 1=0
+            //判断是否已有 where，如果是，则加 and 1=0
             //从最后一个 ) 开始找 where，或者整个语句找
             if (querySql.contains(")")) {
                 if (querySql.substring(querySql.indexOf(")")).contains("where")) {
@@ -486,7 +500,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         long maxVal = 0;
         try {
             stmt = connection.createStatement();
-            //获取sql
+            //获取 sql
             String sql = getSQLMaxID(tableName, primaryKey);
             rs = stmt.executeQuery(sql);
             rs.next();
@@ -529,7 +543,7 @@ public abstract class BaseQueryTool implements QueryToolInterface {
         ResultSet rs = null;
         try {
             stmt = connection.createStatement();
-            //获取sql
+            //获取 sql
             String sql = getSQLQueryTableSchema();
             rs = stmt.executeQuery(sql);
             while (rs.next()) {
