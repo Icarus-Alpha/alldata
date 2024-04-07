@@ -41,13 +41,13 @@ management:
       context-path: /actuator
 
 mybatis-plus:
-  # mapper.xml文件扫描
+  # mapper.xml 文件扫描
   mapper-locations: classpath*:/mybatis-mapper/*Mapper.xml
-  # 实体扫描，多个package用逗号或者分号分隔
+  # 实体扫描，多个 package 用逗号或者分号分隔
   global-config:
     # 数据库相关配置
     db-config:
-      # 主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID", ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      # 主键类型  AUTO:"数据库 ID 自增", INPUT:"用户输入 ID", ID_WORKER:"全局唯一 ID (数字类型唯一 ID)", UUID:"全局唯一 ID UUID";
       id-type: AUTO
       # 字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
       field-strategy: NOT_NULL
@@ -59,7 +59,7 @@ mybatis-plus:
       # 数据库类型
       db-type: mysql
     banner: false
-  # mybatis原生配置
+  # mybatis 原生配置
   configuration:
     map-underscore-to-camel-case: true
     cache-enabled: false
@@ -82,13 +82,13 @@ dts:
       ### log retention days
     logretentiondays: 30
   executor:
-    #项目里用到的只有chunjun的引用，chunjun都是.sh文件，需要自己拼shell命令
-    chunjunHome: /home/datax/datax/bin/datax.py #修改为自己的datax路径
-    chunjunjsonPath: /home/datax/datax/job/    #修改为自己的datax路径
-    chunjunlogHome: /home/datax/datax/job-log    #修改为自己的datax路径
-    dataxHome: /home/datax/datax/bin/datax.py
-    dataxjsonPath: /home/datax/datax/job/
-    dataxlogHome: /home/datax/datax/job-log
+    #项目里用到的只有 chunjun 的引用，chunjun 都是.sh 文件，需要自己拼 shell 命令
+    chunjunHome: /opt/module/chunjun/chunjun.py     #修改为自己的 chunjun 路径
+    chunjunjsonPath: /opt/module/chunjun/job/       #修改为自己的 chunjun 路径
+    chunjunlogHome: /opt/module/chunjun/job-log     #修改为自己的 chunjun 路径
+    dataxHome: /opt/module/datax/bin/datax.py       #修改为自己的 datax 路径
+    dataxjsonPath: /opt/module/datax/job/           #修改为自己的 datax 路径
+    dataxlogHome: /opt/module/datax/job-log         #修改为自己的 datax 路径
 
 datasource:
   aes:
@@ -98,7 +98,7 @@ datasource:
 xxl:
   job:
     admin:
-      # 修改为自己的data-dts服务地址
+      # 修改为自己的 data-dts 服务地址
       addresses: http://16gmaster:9536
     executor:
       # 此执行器的名称
@@ -106,6 +106,6 @@ xxl:
       # 此执行器的端口
       port: 9537
       # 此执行器的日志存放路径
-      logpath: logs/xxl-job/datax
+      logpath: logs/xxl-job/flinkx
       # 此执行器的日志保存时间
       logretentiondays: 7
