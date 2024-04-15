@@ -9,19 +9,19 @@ source /etc/profile
 
 
 echo "即将启动任务data-market-service-mapping"
-sh data-market-service-mapping.sh
+sh data-market-service-mapping/data-market-service-mapping.sh
 
 echo "即将启动任务data-masterdata-service"
-sh data-masterdata-service.sh
+sh data-market-service-mapping/data-market-service-mapping.sh
 
 echo "即将启动任务data-metadata-service-console"
-sh data-metadata-service-console.sh
+sh data-metadata-service-console/data-metadata-service-console.sh
 
 echo "即将启动任务data-quality-service"
-sh data-quality-service.sh
+sh data-quality-service/data-quality-service.sh
 
 echo "即将启动任务workflow-service"
-sh workflow-service.sh
+sh workflow-service/workflow-service.sh
 
 echo "即将启动任务codegen-service"
-sh codegen-service.sh
+sh codegen-service/codegen-service.sh

@@ -7,18 +7,18 @@ source /etc/profile
 #sleep 15s
 
 echo "即将启动任务data-standard-service"
-sh data-standard-service.sh
+sh data-standard-service/data-standard-service.sh
 
 echo "即将启动任务data-visual-service"
-sh data-visual-service.sh
+sh data-visual-service/data-visual-service.sh
 
 echo "即将启动任务email-service"
-sh email-service.sh
+sh email-service/email-service.sh
 
 echo "即将启动任务file-service"
-sh file-service.sh
+sh file-service/file-service.sh
 
 echo "即将启动任务quartz-service"
-sh quartz-service.sh
+sh quartz-service/quartz-service.sh
 
 
