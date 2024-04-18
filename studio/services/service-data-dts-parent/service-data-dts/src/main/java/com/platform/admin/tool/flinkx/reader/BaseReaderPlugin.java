@@ -47,6 +47,13 @@ public abstract class BaseReaderPlugin extends BaseFlinkxPlugin {
             }
             connectionObj.put("table", plugin.getTables());
         }
+
+        // 判断是否有增量字段
+        if (StringUtils.isNotBlank(plugin.getIncreColumn())) {
+            parameterObj.put("increColumn", plugin.getIncreColumn());
+            parameterObj.put("startLocation", plugin.getStartLocation());
+        }
+
         parameterObj.put("splitPk",plugin.getSplitPk());
         connectionObj.put("jdbcUrl", ImmutableList.of(jobDatasource.getJdbcUrl()));
 

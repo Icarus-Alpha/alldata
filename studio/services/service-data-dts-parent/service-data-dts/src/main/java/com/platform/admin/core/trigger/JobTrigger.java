@@ -35,7 +35,7 @@ public class JobTrigger {
      *
      * @param jobId
      * @param triggerType
-     * @param failRetrypublic class JobTriggerPoolHelper {Count        >=0: use this param
+     * @param failRetrypublic       class JobTriggerPoolHelper {Count        >=0: use this param
      *                              <0: use param from job info config
      * @param executorShardingParam
      * @param executorParam         null: use job param
@@ -48,7 +48,7 @@ public class JobTrigger {
             return;
         }
         if (GlueTypeEnum.BEAN.getDesc().equals(jobInfo.getGlueType())) {
-            //解密账密
+            // 解密账密
             String json = JSONUtils.changeJson(jobInfo.getJobJson(), JSONUtils.decrypt);
             jobInfo.setJobJson(json);
         }
@@ -140,7 +140,7 @@ public class JobTrigger {
         triggerParam.setBroadcastTotal(total);
         triggerParam.setJobJson(jobInfo.getJobJson());
 
-        //increment parameter
+        // increment parameter
         Integer incrementType = jobInfo.getIncrementType();
         if (incrementType != null) {
             triggerParam.setIncrementType(incrementType);
@@ -158,7 +158,7 @@ public class JobTrigger {
             }
             triggerParam.setReplaceParam(jobInfo.getReplaceParam());
         }
-        //jvm parameter
+        // jvm parameter
         triggerParam.setJvmParam(jobInfo.getJvmParam());
 
         // 3、init address
@@ -217,10 +217,18 @@ public class JobTrigger {
         jobLog.setExecutorFailRetryCount(finalFailRetryCount);
         jobLog.setTriggerCode(triggerResult.getCode());
         jobLog.setTriggerMsg(triggerMsgSb.toString());
-        int uodateCount = JobAdminConfig.getAdminConfig().getJobLogMapper().updateTriggerInfo(jobLog);
+        int updateCount = JobAdminConfig.getAdminConfig().getJobLogMapper().updateTriggerInfo(jobLog);
+
+        // 如果是主键增量同步，则将jobLog的maxId保存到jobInfo中的last_inc_end_id中
+        if (IncrementTypeEnum.ID.getCode() == jobInfo.getIncrementType() && triggerResult.getCode() == ReturnT.SUCCESS_CODE) {
+            Long maxId = jobLog.getMaxId();
+            String lastJobJson = jobInfo.getJobJson();
+            String updatedJobJson = JSONUtils.updateStartLocation(lastJobJson, maxId); // 更新jobJson
+            JobAdminConfig.getAdminConfig().getJobInfoMapper().incrementEndIdUpdate(jobInfo.getId(), maxId, updatedJobJson, new Date());
+        }
 
         logger.info(">>>>>>>>>>> service-data-dts trigger end, jobId:{}", jobLog.getId());
-        logger.info(">>>>>>>>>>> service-data-dts trigger end, uodateCount:{}", uodateCount);
+        logger.info(">>>>>>>>>>> service-data-dts trigger end, uodateCount:{}", updateCount);
     }
 
     private static long getMaxId(JobInfo jobInfo) {

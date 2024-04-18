@@ -50,6 +50,7 @@
 		<result column="reader_table" property="readerTable" />
 		<result column="primary_key" property="primaryKey" />
 		<result column="inc_start_id" property="incStartId" />
+		<result column="last_inc_end_id" property="lastIncEndId"/>
 		<result column="increment_type" property="incrementType" />
 		<result column="datasource_id" property="datasourceId" />
 	</resultMap>
@@ -88,6 +89,7 @@
 		t.reader_table,
 		t.primary_key,
 		t.inc_start_id,
+		t.last_inc_end_id,
 		t.increment_type,
 		t.datasource_id
 	</sql>
@@ -281,6 +283,7 @@
 			reader_table = #{readerTable},
 		    primary_key = #{primaryKey},
 		    inc_start_id = #{incStartId},
+		    last_inc_end_id=#{lastIncEndId},
 		    increment_type = #{incrementType},
 		    datasource_id= #{datasourceId}
 		WHERE id = #{id}
@@ -340,6 +343,14 @@
 		UPDATE job_info
 		SET
 		inc_start_id = #{incStartId}
+		WHERE id = #{id}
+	</update>
+
+	<update id="incrementEndIdUpdate" parameterType="java.util.HashMap">
+		UPDATE job_info
+		SET last_inc_end_id = #{lastIncEndId},
+			job_json = #{jobJson},
+			update_time = #{updateTime}
 		WHERE id = #{id}
 	</update>
 </mapper>

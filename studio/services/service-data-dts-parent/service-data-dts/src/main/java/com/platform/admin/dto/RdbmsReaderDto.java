@@ -20,4 +20,10 @@ public class RdbmsReaderDto implements Serializable {
     private String whereParams;
 
     private String querySql;
+
+    private String increColumn;
+
+    private String startLocation;
+
+    private Boolean useMaxFunc;
 }

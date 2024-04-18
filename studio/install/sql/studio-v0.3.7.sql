@@ -321,6 +321,9 @@ ADD COLUMN `inc_start_id` VARCHAR(20) NULL COMMENT '增量初始id' AFTER `prima
 ADD COLUMN `increment_type` TINYINT(4) NULL COMMENT '增量类型' AFTER `inc_start_id`,
 ADD COLUMN `datasource_id` BIGINT(11) NULL COMMENT '数据源id' AFTER `increment_type`;
 
+ALTER TABLE `job_info`
+ADD COLUMN `last_inc_end_id` VARCHAR(20) NULL COMMENT '最近一次增量结束id' AFTER `inc_start_id`;
+
 CREATE TABLE IF NOT EXISTS `job_project`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'key',
   `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT 'project name',

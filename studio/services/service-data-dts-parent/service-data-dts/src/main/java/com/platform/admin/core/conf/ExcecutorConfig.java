@@ -27,7 +27,11 @@ public class ExcecutorConfig implements InitializingBean, DisposableBean {
 	@Value("${dts.executor.chunjunHome}")
 	private  String flinkxHome;
 
+	@Value("${dts.executor.yarn.address}")
+	private  String yarnAddress;
 
+	@Value("${dts.executor.prometheus.address}")
+	private String prometheusAddress;
 
 	@Value("${dts.executor.chunjunjsonPath}")
 	private  String flinkxjsonPath;
@@ -139,5 +143,21 @@ public class ExcecutorConfig implements InitializingBean, DisposableBean {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getPrometheusAddress() {
+		return prometheusAddress;
+	}
+
+	public void setPrometheusAddress(String prometheusAddress) {
+		this.prometheusAddress = prometheusAddress;
+	}
+
+	public String getYarnAddress() {
+		return yarnAddress;
+	}
+
+	public void setYarnAddress(String yarnAddress) {
+		this.yarnAddress = yarnAddress;
 	}
 }

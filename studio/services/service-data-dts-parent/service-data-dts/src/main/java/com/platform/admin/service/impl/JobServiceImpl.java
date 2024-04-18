@@ -1,5 +1,6 @@
 package com.platform.admin.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.platform.admin.dto.FlinkXBatchJsonBuildDto;
 import com.platform.admin.dto.FlinkXJsonBuildDto;
 import com.platform.admin.entity.JobTemplate;
@@ -20,8 +21,10 @@ import com.platform.admin.entity.JobGroup;
 import com.platform.admin.entity.JobInfo;
 import com.platform.admin.entity.JobLogReport;
 import com.platform.admin.util.DateFormatUtils;
+import com.platform.admin.util.JSONUtils;
 import com.platform.core.biz.model.ReturnT;
 import com.platform.core.enums.ExecutorBlockStrategyEnum;
+import com.platform.core.enums.IncrementTypeEnum;
 import com.platform.core.glue.GlueTypeEnum;
 import com.platform.core.util.DateUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -302,11 +305,17 @@ public class JobServiceImpl implements JobService {
         xxlJobInfo.setTriggerLastTime(0);
         xxlJobInfo.setTriggerNextTime(nextTriggerTime);
 
+        // 如果为增量主键同步任务，那么下一次的Job_info的job_json中的startLocation为该Job_info的last_inc_end_id
+        if (IncrementTypeEnum.ID.getCode() == xxlJobInfo.getIncrementType() && StringUtils.isNotBlank(xxlJobInfo.getPrimaryKey())) {
+
+            String lastJobJson = xxlJobInfo.getJobJson();
+            String updatedJobJson = JSONUtils.updateStartLocation(lastJobJson, xxlJobInfo.getLastIncEndId());
+            xxlJobInfo.setJobJson(updatedJobJson);
+        }
         xxlJobInfo.setUpdateTime(new Date());
         jobInfoMapper.update(xxlJobInfo);
         return ReturnT.SUCCESS;
     }
-
     @Override
     public ReturnT<String> stop(int id) {
         JobInfo jobInfo = jobInfoMapper.loadById(id);
