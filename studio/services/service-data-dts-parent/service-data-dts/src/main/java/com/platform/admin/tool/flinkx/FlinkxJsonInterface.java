@@ -20,6 +20,10 @@ public interface FlinkxJsonInterface {
 
     Map<String, Object> buildReader();
 
+    Map<String, Object> buildBinlogMySQLReader();
+
+    Map<String, Object> buildKafkaWriter();
+
     Map<String, Object> buildHiveReader();
 
     Map<String, Object> buildHiveWriter();

@@ -40,6 +40,10 @@ public class FlinkXJsonBuildDto implements Serializable {
 
     private RdbmsWriterDto rdbmsWriter;
 
+    private BinlogReaderDto binlogReader;
+
+    private KafkaWriterDto kafkaWriter;
+
     private MongoDBReaderDto mongoDBReader;
 
     private MongoDBWriterDto mongoDBWriter;

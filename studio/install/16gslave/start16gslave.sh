@@ -12,7 +12,7 @@ echo "即将启动任务data-market-service-mapping"
 sh data-market-service-mapping/data-market-service-mapping.sh
 
 echo "即将启动任务data-masterdata-service"
-sh data-market-service-mapping/data-market-service-mapping.sh
+sh data-masterdata-service/data-masterdata-service.sh
 
 echo "即将启动任务data-metadata-service-console"
 sh data-metadata-service-console/data-metadata-service-console.sh
