@@ -71,4 +71,103 @@ public class JSONUtils {
         json.put("job", job);
         return json.toJSONString();
     }
+
+    /**
+     * 更新 Job JSON 的 startLocation 字段。
+     * @param jobJson 原始的 jobJson 字符串。
+     * @param lastIncEndId 要设置的新 startLocation 值。
+     * @return 更新后的 jobJson 字符串。
+     */
+    public static String updateStartLocation(String jobJson, Long lastIncEndId) {
+        JSONObject jsonObject = JSONObject.parseObject(jobJson);
+        // 检查 lastIncEndId 是否为 null，如果是则用"0"代替
+        String newStartLocation = (lastIncEndId != null) ? String.valueOf(lastIncEndId) : "0";
+        jsonObject.getJSONObject("job")
+                .getJSONArray("content")
+                .getJSONObject(0)
+                .getJSONObject("reader")
+                .getJSONObject("parameter")
+                .put("startLocation", newStartLocation);
+
+        return jsonObject.toJSONString();
+    }
+
+    public static void main(String[] args) {
+        String json = "{\n" +
+                "    \"job\": {\n" +
+                "        \"setting\": {\n" +
+                "            \"speed\": {\n" +
+                "                \"channel\": 1,\n" +
+                "                \"bytes\": 0\n" +
+                "            },\n" +
+                "            \"errorLimit\": {\n" +
+                "                \"record\": 100\n" +
+                "            },\n" +
+                "            \"restore\": {\n" +
+                "                \"maxRowNumForCheckpoint\": 0,\n" +
+                "                \"isRestore\": false,\n" +
+                "                \"restoreColumnName\": \"\",\n" +
+                "                \"restoreColumnIndex\": 0\n" +
+                "            },\n" +
+                "            \"log\": {\n" +
+                "                \"isLogger\": false,\n" +
+                "                \"level\": \"debug\",\n" +
+                "                \"path\": \"\",\n" +
+                "                \"pattern\": \"\"\n" +
+                "            }\n" +
+                "        },\n" +
+                "        \"content\": [\n" +
+                "            {\n" +
+                "                \"reader\": {\n" +
+                "                    \"name\": \"mysqlreader\",\n" +
+                "                    \"parameter\": {\n" +
+                "                        \"username\": \"root\",\n" +
+                "                        \"password\": \"root\",\n" +
+                "                        \"column\": [\n" +
+                "                            \"id\",\n" +
+                "                            \"student\",\n" +
+                "                            \"age\"\n" +
+                "                        ],\n" +
+                "                        \"increColumn\": \"id\",\n" +
+                "                        \"startLocation\": \"1\",\n" +
+                "                        \"splitPk\": \"\",\n" +
+                "                        \"connection\": [\n" +
+                "                            {\n" +
+                "                                \"table\": [\n" +
+                "                                    \"table1\"\n" +
+                "                                ],\n" +
+                "                                \"jdbcUrl\": [\n" +
+                "                                    \"jdbc:mysql://hadoop101:3306/test_import\"\n" +
+                "                                ]\n" +
+                "                            }\n" +
+                "                        ]\n" +
+                "                    }\n" +
+                "                },\n" +
+                "                \"writer\": {\n" +
+                "                    \"name\": \"mysqlwriter\",\n" +
+                "                    \"parameter\": {\n" +
+                "                        \"username\": \"root\",\n" +
+                "                        \"password\": \"root\",\n" +
+                "                        \"writeMode\": \"insert\",\n" +
+                "                        \"column\": [\n" +
+                "                            \"id\",\n" +
+                "                            \"student\",\n" +
+                "                            \"age\"\n" +
+                "                        ],\n" +
+                "                        \"connection\": [\n" +
+                "                            {\n" +
+                "                                \"table\": [\n" +
+                "                                    \"table1\"\n" +
+                "                                ],\n" +
+                "                                \"jdbcUrl\": \"jdbc:mysql://hadoop101:3306/test_export\"\n" +
+                "                            }\n" +
+                "                        ]\n" +
+                "                    }\n" +
+                "                }\n" +
+                "            }\n" +
+                "        ]\n" +
+                "    }\n" +
+                "}\n";
+        System.out.println(updateStartLocation(json, 1l));
+    }
 }

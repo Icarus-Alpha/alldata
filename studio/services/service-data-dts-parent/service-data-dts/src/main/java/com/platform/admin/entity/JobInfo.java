@@ -104,6 +104,9 @@ public class JobInfo {
 	@ApiModelProperty("增量初始id")
 	private Long incStartId;
 
+	@ApiModelProperty("最近一次执行结束id")
+	private Long lastIncEndId;
+
 	@ApiModelProperty("增量方式")
 	private int incrementType;
 

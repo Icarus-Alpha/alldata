@@ -270,6 +270,19 @@ public class FlinkxJsonHelper implements FlinkxJsonInterface {
 		if (StringUtils.isNotBlank(rdbmsReaderDto.getWhereParams())) {
 			flinkxPluginPojo.setWhereParam(rdbmsReaderDto.getWhereParams());
 		}
+        // increColumn
+        if (StringUtils.isNotBlank(rdbmsReaderDto.getIncreColumn())) {
+            flinkxPluginPojo.setIncreColumn(rdbmsReaderDto.getIncreColumn());
+            // startLocation
+            if (StringUtils.isNotBlank(rdbmsReaderDto.getStartLocation())) {
+                flinkxPluginPojo.setStartLocation(rdbmsReaderDto.getStartLocation());
+            }
+            // useMaxFunc
+            if (rdbmsReaderDto.getUseMaxFunc()) {
+                flinkxPluginPojo.setUseMaxFunc(true);
+            }
+        }
+
 		return readerPlugin.build(flinkxPluginPojo);
 	}
 

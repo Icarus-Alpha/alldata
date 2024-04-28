@@ -20,10 +20,10 @@ public class DataxJobHandler extends IJobHandler {
 
     @Override
     public ReturnT<String> execute(TriggerParam tgParam) throws Exception {
-        log.info("---------Datax定时任务开始执行--------");
+        log.info("---------Flinkx定时任务开始执行--------");
         //数据抽取具体的执行方法
         JobTriggerPoolHelper.runJob(tgParam.getJobId());
-        System.out.println("---------Datax定时任务执行成功--------");
+        System.out.println("---------Flinkx定时任务执行成功--------");
         return ReturnT.SUCCESS;
     }
 }

@@ -89,6 +89,13 @@ dts:
     dataxHome: /opt/module/datax/bin/datax.py       #修改为自己的 datax 路径
     dataxjsonPath: /opt/module/datax/job/           #修改为自己的 datax 路径
     dataxlogHome: /opt/module/datax/job-log         #修改为自己的 datax 路径
+    prometheus:
+      address: http://hadoop101:9090
+    yarn:
+      queue: chunjun
+      # 修改为自己的 yarn 集群地址
+      address: http://hadoop102:8088
+
 
 datasource:
   aes:
